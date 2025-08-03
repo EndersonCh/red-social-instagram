@@ -1,19 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { supabase } from "../services/supabase";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
+
 import BarraMenu from "../components/barraMenu";
-const Home = () => {
-  const navigate = useNavigate();
+
+const Profile = () => {
   const [datosUser, setdatosUser] = useState(null);
-
-  useEffect(() => {
-    supabase.auth.onAuthStateChange((event, session) => {
-      if (!session) {
-        navigate("/login");
-      }
-    });
-  }, [navigate]);
-
   useEffect(() => {
     const infoUser = async () => {
       const {
@@ -32,28 +24,20 @@ const Home = () => {
     };
     infoUser();
   }, []);
-
-  if (!datosUser) {
-    return <div>Cargando...</div>;
+  if (!datosUser || !datosUser.perfil) {
+    return <div>Cargando...</div>; // O puedes poner un spinner
   }
-
-  function publicar() {
-    console.log("Publicando");
-  }
-
   return (
     <div>
+      <h1>Perfil</h1>
       <img src={datosUser.perfil?.image_url} alt="foto de usuario" />
       <br />
       <h2>Bienvenido, {datosUser.perfil.name || datosUser.email}</h2>
       <br />
-      <button onClick={publicar}>Publicar</button>
-
-      <div>
-        <BarraMenu />
-      </div>
+      <BarraMenu />
+      <br />
     </div>
   );
 };
 
-export default Home;
+export default Profile;

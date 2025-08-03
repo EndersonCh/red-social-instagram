@@ -7,7 +7,7 @@ const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState(""); // Puede ser correo o username
   const [password, setPassword] = useState("");
-
+  const [loginExitoso, setLoginExitoso] = useState(false);
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -17,7 +17,7 @@ const Login = () => {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            identifier: email, // Puede ser correo o username
+            identifier: email,
             password: password,
           }),
         }
@@ -27,7 +27,7 @@ const Login = () => {
 
       if (!response.ok) {
         console.error("Error al iniciar sesión:", result.error);
-        alert("❌ Error: " + result.error);
+        alert("Error: " + result.error);
         return;
       }
 
@@ -38,10 +38,9 @@ const Login = () => {
         refresh_token,
       });
 
-      console.log("✅ Sesión iniciada");
-      alert("Bienvenido ✅");
+      console.log("Sesión iniciada");
     } catch (error) {
-      console.error("❌ Error inesperado:", error);
+      console.error("Error inesperado:", error);
       alert("Ocurrió un error inesperado.");
     }
   };
@@ -52,7 +51,7 @@ const Login = () => {
         data: { user },
       } = await supabase.auth.getUser();
       if (user) {
-        navigate("/");
+        setLoginExitoso(true);
       }
     };
     checkUser();
@@ -65,11 +64,13 @@ const Login = () => {
           type="text"
           placeholder="Correo o nombre de usuario"
           onChange={(e) => setEmail(e.target.value)}
+          disabled={loginExitoso}
         />
         <input
           type="password"
           placeholder="Clave"
           onChange={(e) => setPassword(e.target.value)}
+          disabled={loginExitoso}
         />
         <button type="submit">Entrar</button>
       </form>

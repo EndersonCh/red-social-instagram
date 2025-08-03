@@ -8,10 +8,11 @@ const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUserName] = useState("");
-  //   const [image, setImage] = useState("");
+  const [loginExitoso, setLoginExitoso] = useState(false);
   const [name, setName] = useState("");
   const image_url =
     "https://ylazueywekhmwffebgke.supabase.co/storage/v1/object/public/user//user.png";
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -51,7 +52,7 @@ const SignUp = () => {
         data: { user },
       } = await supabase.auth.getUser();
       if (user) {
-        navigate("/");
+        setLoginExitoso(true);
       }
     };
     checkUser();
@@ -83,6 +84,11 @@ const SignUp = () => {
 
         <button type="submit">Entrar</button>
       </form>
+      <br />
+      <button onClick={() => navigate("/Home")} disable={!loginExitoso}>
+        Ir a mi cuenta
+      </button>
+      <br />
       <button onClick={() => navigate("/login")}>Ya tengo una cuenta</button>
     </div>
   );
