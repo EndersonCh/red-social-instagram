@@ -10,6 +10,28 @@ const Profile = () => {
   const [miPerfil, setMiPerfil] = useState(false);
   const [id_auth, setId_auth] = useState("");
   const [seguido, setSeguido] = useState(false);
+  const [contSeguidores, setContSeguidores] = useState(0);
+  const [contSeguidos, setContSeguidos] = useState(0);
+
+  const actualizarContadores = async (userId) => {
+    try {
+      const { count: seguidores } = await supabase
+        .from("seguidores")
+        .select("*", { count: "exact" })
+        .eq("seguido_id", userId);
+
+      const { count: seguidos } = await supabase
+        .from("seguidores")
+        .select("*", { count: "exact" })
+        .eq("seguidor_id", userId);
+
+      setContSeguidores(seguidores || 0);
+      setContSeguidos(seguidos || 0);
+    } catch (error) {
+      console.error("Error actualizando contadores:", error);
+    }
+  };
+
   useEffect(() => {
     const cargarPerfil = async () => {
       const {
@@ -39,9 +61,11 @@ const Profile = () => {
         return;
       }
       setDatosUser({ id, perfil });
+      await actualizarContadores(id);
     };
     cargarPerfil();
   }, [userId]);
+
   useEffect(() => {
     if (!datosUser?.id || !id_auth) {
       return;
@@ -81,6 +105,7 @@ const Profile = () => {
       return;
     }
     setSeguido(true);
+    await actualizarContadores(datosUser.id);
   };
   const handleDejarClick = async () => {
     const { error } = await supabase
@@ -94,10 +119,17 @@ const Profile = () => {
       return;
     }
     setSeguido(false);
+    await actualizarContadores(datosUser.id);
   };
   return (
     <div>
       <h1>Perfil</h1>
+
+      <img
+        src={datosUser.perfil?.image_url}
+        alt="foto de usuario"
+        style={{ width: 150, borderRadius: "50%" }}
+      />
       {!miPerfil && (
         <>
           <div>
@@ -111,11 +143,8 @@ const Profile = () => {
           </div>
         </>
       )}
-      <img
-        src={datosUser.perfil?.image_url}
-        alt="foto de usuario"
-        style={{ width: 150, borderRadius: "50%" }}
-      />
+      <h4>Seguidores {contSeguidores}</h4>
+      <h4>Seguidos {contSeguidos}</h4>
       <br />
       <h2>{datosUser.perfil.name || datosUser.perfil.email}</h2>
       <br />
