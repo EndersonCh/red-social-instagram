@@ -3,6 +3,7 @@ import { supabase } from "../services/supabase";
 import { useNavigate } from "react-router-dom";
 import BarraMenu from "../components/barraMenu";
 import { SubirMedia } from "../components/subirMedia";
+import HomeGallery from "../components/galeriaHome";
 const Home = () => {
   const navigate = useNavigate();
   const [datosUser, setdatosUser] = useState(null);
@@ -49,7 +50,9 @@ const Home = () => {
       <h2>Bienvenido, {datosUser.perfil.name || datosUser.email}</h2>
       <br />
       <SubirMedia />
-
+      <br />
+      <h4>Galeria</h4>
+      <HomeGallery userId={datosUser.id} />
       <div>
         <BarraMenu />
       </div>

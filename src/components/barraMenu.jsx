@@ -70,7 +70,7 @@ const BarraMenu = () => {
           ))}
         </ul>
       )}
-      <button onClick={handleHomeClick}>Explorar</button>
+      <button onClick={handleHomeClick}>Mensajes</button>
       <button onClick={handleSettingsClick}>Configuracion</button>
       <button onClick={() => supabase.auth.signOut()}>logout</button>
     </div>
