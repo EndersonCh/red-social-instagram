@@ -18,7 +18,7 @@ const BarraMenu = () => {
       const { data, error } = await supabase
         .from("profiles")
         .select("*")
-        .ilike("username", `%${busqueda}`);
+        .ilike("username", `%${busqueda}%`);
 
       if (error) {
         console.error("Error al buscar", error);
@@ -33,7 +33,7 @@ const BarraMenu = () => {
     setSeleccionado(usuario);
     setBusqueda("");
     setResultados([]);
-    console.log(`Seleccionado ${usuario.id}`);
+    navigate(`/profile/${usuario.user_id}`);
   };
   const handlePerfilClick = () => {
     navigate("/profile");
@@ -61,7 +61,10 @@ const BarraMenu = () => {
       {resultados.length > 0 && (
         <ul>
           {resultados.map((usuario) => (
-            <li key={usuario.id} onClick={() => handleSeleccionar(usuario)}>
+            <li
+              key={usuario.user_id}
+              onClick={() => handleSeleccionar(usuario)}
+            >
               {usuario.name} ({usuario.username})
             </li>
           ))}

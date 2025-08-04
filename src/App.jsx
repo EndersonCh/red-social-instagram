@@ -56,6 +56,7 @@ function App() {
           path="/settings"
           element={user ? <Settings /> : <Navigate to="/login" replace />}
         />
+        <Route path="/profile/:userId" element={<Profile />} />
       </Routes>
     </div>
   );
