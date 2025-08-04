@@ -7,7 +7,7 @@ import { useParams } from "react-router-dom";
 const Profile = () => {
   const [datosUser, setDatosUser] = useState(null);
   const { userId } = useParams();
-  const [miPerfil, setMiPerfil] = useState(false);
+  const [miPerfil, setMiPerfil] = useState(null);
   const [id_auth, setId_auth] = useState("");
   const [seguido, setSeguido] = useState(false);
   const [contSeguidores, setContSeguidores] = useState(0);
@@ -46,9 +46,6 @@ const Profile = () => {
 
       const id = userId || authUser.id;
       setId_auth(authUser.id);
-      if (id == authUser.id) {
-        setMiPerfil(true);
-      }
 
       const { data: perfil, error: errorPerfil } = await supabase
         .from("profiles")
@@ -60,17 +57,28 @@ const Profile = () => {
         console.error("Error cargando el perfil");
         return;
       }
+
       setDatosUser({ id, perfil });
-      await actualizarContadores(id);
     };
     cargarPerfil();
   }, [userId]);
 
   useEffect(() => {
-    if (!datosUser?.id || !id_auth) {
-      return;
+    if (datosUser?.id && id_auth) {
+      if (datosUser.id === id_auth) {
+        setMiPerfil(true);
+      } else {
+        setMiPerfil(false);
+      }
     }
+  }, [datosUser?.id, id_auth]);
+
+  useEffect(() => {
     const verificarSeguidor = async () => {
+      if (!datosUser?.id || !id_auth || datosUser.id === id_auth) {
+        return;
+      }
+
       const { data: seguiData, error: seguiError } = await supabase
         .from("seguidores")
         .select("*")
@@ -90,6 +98,12 @@ const Profile = () => {
     verificarSeguidor();
   }, [id_auth, datosUser?.id]);
 
+  useEffect(() => {
+    if (datosUser?.id) {
+      actualizarContadores(datosUser.id);
+    }
+  }, [datosUser?.id]);
+
   if (!datosUser || !datosUser.perfil) {
     return <div>Cargardo perfil...</div>;
   }
@@ -105,7 +119,7 @@ const Profile = () => {
       return;
     }
     setSeguido(true);
-    await actualizarContadores(datosUser.id);
+    actualizarContadores(datosUser.id);
   };
   const handleDejarClick = async () => {
     const { error } = await supabase
@@ -119,8 +133,11 @@ const Profile = () => {
       return;
     }
     setSeguido(false);
-    await actualizarContadores(datosUser.id);
+    actualizarContadores(datosUser.id);
   };
+  if (datosUser?.id) {
+    actualizarContadores(datosUser.id);
+  }
   return (
     <div>
       <h1>Perfil</h1>
@@ -130,7 +147,7 @@ const Profile = () => {
         alt="foto de usuario"
         style={{ width: 150, borderRadius: "50%" }}
       />
-      {!miPerfil && (
+      {miPerfil == false && id_auth && (
         <>
           <div>
             <button onClick={handleSeguirClick} hidden={seguido}>
