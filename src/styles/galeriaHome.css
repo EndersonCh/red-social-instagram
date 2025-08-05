@@ -1,0 +1,229 @@
+
+.container-padre {
+
+    display: block; 
+ 
+  padding: 20px;
+  gap: 10px; /* Espacio entre las publicaciones */
+  justify-content: center; /* Centra las publicaciones en la pantalla */
+ 
+
+}
+
+/* Estilos para cada publicación individual (la tarjeta) */
+.publicacion {
+  background-color: #fff;
+  border-radius: 8px; /* Bordes redondeados */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil para el efecto de tarjeta */
+  padding: 15px;
+  max-width: 60%;
+  width: 100%;
+  text-align: center;
+  margin: 0 auto 20px; /* Aquí está el cambio */
+}
+
+.espacio-boton{
+    display: flex;
+     justify-content: flex-end; 
+}
+
+/* Estilos para la imagen dentro de la publicación */
+.publicacion-imagen {
+  border-radius: 6px;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin-bottom: 10px;
+  object-fit: cover; /* Asegura que la imagen cubra el espacio sin distorsionarse */
+}
+
+/* Estilos para la fecha de la publicación */
+.fecha-publicacion {
+  color: #777;
+  font-size: 14px;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+/* Estilos para el botón de comentarios */
+.publicacion button {
+  background-color: #fffafb;
+    color: #495057;
+  border-color: #fc476a;
+  border-style: solid;
+  border-width: 1px; /* El cambio aquí */
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  transition: background-color 0.2s;
+  margin-top: 10px;
+}
+
+.publicacion button:hover {
+  background-color: #fc476a;
+}
+
+/* Estilos para el cuadro de texto de la publicación */
+.cuadro-texto {
+  display: flex;
+  margin-top: 15px;
+  align-items: center;
+}
+
+.cuadro-texto input {
+  flex-grow: 1; /* El input se expande para llenar el espacio */
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  font-size: 14px;
+  margin-right: 5px;
+}
+
+.cuadro-texto button {
+  padding: 8px 12px;
+  margin-left: 0;
+  white-space: nowrap; /* Evita que el texto del botón se rompa */
+}
+
+/* Estilos para el modal */
+.modal {
+  /* Los estilos inline ya hacen gran parte del trabajo, pero podemos refinarlo */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7); /* Oscurece el fondo */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-chico {
+  background: #fff;
+  padding: 0px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  max-width: 90%;
+  max-height: 90vh;
+  height: 90vh;
+  display: flex;
+  gap: 30px;
+  flex-direction: row;
+  overflow: hidden;
+}
+
+/* Estilos para el contenedor de la imagen en el modal */
+.modal-modal-imagen  {
+  max-height: 85vh; /* Ajusta el tamaño de la imagen */
+  max-width: 50vw;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.modal-bloque-data{
+    margin-top: 10px;
+    padding: 10px;
+    height: 100%; /* Ocupa el 100% de la altura de .modal-chico */
+  background: #f5f5f5;
+  display: flex; /* Se convierte en un contenedor flex */
+  flex-direction: column;
+   overflow: auto; 
+ 
+}
+
+/* Estilos para el contenedor de comentarios en el modal */
+.modal-comentarios {
+     margin-top: 10px;
+  display: flex;
+  gap: 10px;
+  align-items: flex-start; /* Alinea el avatar con el contenido */
+  margin-bottom: 12px;
+}
+.modal-comentarios small {
+  /* La clave es esta línea */
+  display: block; 
+  margin-top: 5px; /* Un poco de espacio arriba para separar del texto del comentario */
+  color: #888;
+  font-size: 0.8rem; 
+}
+
+.modal h4 {
+border-bottom: 1px solid #ccc; 
+  margin-top: 0;
+  color: #333;
+}
+
+
+.modal-comentarios-img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover; /* importante para que la imagen rellene el círculo sin deformarse */
+  flex-shrink: 0;
+}
+.modal-comentario-texto{
+    text-align: left;
+}
+.modal-comentario strong {
+  color: #121212;
+  display: block;
+  margin-bottom: 3px;
+}
+
+.modal-comentario small {
+  color: #999;
+  font-size: 12px;
+  
+}
+
+.modal input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.modal-botones {
+    display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  
+  /* Estas dos líneas lo posicionan en el pie */
+  margin-top: auto; /* Empuja el contenedor de botones al final */
+   /* Un poco de espacio arriba */
+    padding: 10px;
+  border-top: 1px solid #ccc; 
+  
+}
+
+.modal-botones input{
+    margin-bottom: 20px;
+}
+
+.modal-botones button {
+    display: flex;
+    margin: 10px;
+    height: 38px;
+  background-color: #fffafb;
+  color: #495057;
+  border: 1px solid #fc476a;
+ padding: auto;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+
+
+.modal-botones button:hover {
+  background-color: #fc476a;
+  color: white; /* Agregado para que el texto sea visible */
+}
