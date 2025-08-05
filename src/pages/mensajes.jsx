@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 const Mensajes = () => {
   const navigate = useNavigate();
   const [conversaciones, setConversaciones] = useState([]);
-  const [cargando, setCargando] = useState(true);
+
   const [busqueda, setBusqueda] = useState("");
   const [resultados, setResultados] = useState([]);
   const [seleccionado, setSeleccionado] = useState(null);

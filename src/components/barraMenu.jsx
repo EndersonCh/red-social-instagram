@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "../services/supabase";
 import { Link } from "react-router-dom";
-
+import "../styles/barraMenu.css";
 const BarraMenu = () => {
   const [busqueda, setBusqueda] = useState("");
   const navigate = useNavigate();
@@ -49,13 +49,25 @@ const BarraMenu = () => {
   };
 
   return (
-    <div>
+    <div className="contenedor">
       <br />
-      <dl></dl>
-      <h4>Barra menu</h4>
-      <button onClick={handleHomeClick}>Home</button>
-      <button onClick={handlePerfilClick}>perfil</button>
+      <div className="logo">
+        <img
+          src={
+            "https://ylazueywekhmwffebgke.supabase.co/storage/v1/object/public/recursos//logo.png"
+          }
+          alt="logo"
+        />
+      </div>
+
+      <button className="button" onClick={handleHomeClick}>
+        Home
+      </button>
+      <button className="button" onClick={handlePerfilClick}>
+        perfil
+      </button>
       <input
+        className="inputbuscar"
         type="text"
         placeholder="Buscar Usuarios"
         onChange={(e) => setBusqueda(e.target.value)}
@@ -73,9 +85,15 @@ const BarraMenu = () => {
           ))}
         </ul>
       )}
-      <button onClick={handleMensajesClick}>Mensajes</button>
-      <button onClick={handleSettingsClick}>Configuracion</button>
-      <button onClick={() => supabase.auth.signOut()}>logout</button>
+      <button className="button" onClick={handleMensajesClick}>
+        Mensajes
+      </button>
+      <button className="button" onClick={handleSettingsClick}>
+        Configuracion
+      </button>
+      <button className="buttonlogout" onClick={() => supabase.auth.signOut()}>
+        logout
+      </button>
     </div>
   );
 };
