@@ -1,0 +1,20 @@
+.contenedor-subir {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1rem;
+}
+
+.button-subir {
+  border-radius: 15px; /* o 0.5rem */
+  background: linear-gradient(to right,  #fc476a, #ec339b);
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  
+}
+
+.button-subir:hover {
+  filter: brightness(1.1);
+}
+

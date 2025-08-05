@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import BarraMenu from "../components/barraMenu";
 import { SubirMedia } from "../components/subirMedia";
 import HomeGallery from "../components/galeriaHome";
-// import "../styles/home.css";
+import "../styles/home.css";
 const Home = () => {
   const navigate = useNavigate();
   const [datosUser, setdatosUser] = useState(null);
@@ -47,22 +47,32 @@ const Home = () => {
       </div>
       <div className="contenedorPrincipal">
         <>
-          <div className="contendor-med">
-            <HomeGallery userId={datosUser.id} />
-          </div>
-          <div className="contenedor-der">
+          <div className="contenedor-med">
             <>
-              {" "}
-              <img
-                src={datosUser.perfil?.image_url}
-                alt="foto de usuario"
-                style={{ width: 150, borderRadius: "50%" }}
-              />
-              <br />
-              <h2>Bienvenido, {datosUser.perfil.name || datosUser.email}</h2>
-              <br />
               <SubirMedia />
+              <hr />
+              <div className="feed">
+                <h2>
+                  <strong>Feed</strong>
+                </h2>
+              </div>
+
+              <HomeGallery userId={datosUser.id} />
             </>
+          </div>
+        </>
+      </div>
+      <div className="contenedor-der">
+        <>
+          <img
+            className="foto-usuario"
+            src={datosUser.perfil?.image_url}
+            alt="foto de usuario"
+          />
+          <div className="datos-user">
+            <h2>{datosUser.perfil.name}</h2>
+            <h3>@{datosUser.perfil.username}</h3>
+            <h4>{datosUser.email}</h4>
           </div>
         </>
       </div>

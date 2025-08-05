@@ -3,6 +3,14 @@ import { useNavigate } from "react-router-dom";
 import { supabase } from "../services/supabase";
 import { Link } from "react-router-dom";
 import "../styles/barraMenu.css";
+import {
+  CiLogin,
+  CiSettings,
+  CiHome,
+  CiMail,
+  CiUser,
+  CiSearch,
+} from "react-icons/ci";
 const BarraMenu = () => {
   const [busqueda, setBusqueda] = useState("");
   const navigate = useNavigate();
@@ -61,11 +69,13 @@ const BarraMenu = () => {
       </div>
 
       <button className="button" onClick={handleHomeClick}>
-        Home
+        <CiHome /> Home
       </button>
       <button className="button" onClick={handlePerfilClick}>
+        <CiUser />
         perfil
       </button>
+
       <input
         className="inputbuscar"
         type="text"
@@ -80,19 +90,19 @@ const BarraMenu = () => {
               key={usuario.user_id}
               onClick={() => handleSeleccionar(usuario)}
             >
-              {usuario.name} ({usuario.username})
+              @{usuario.username}
             </li>
           ))}
         </ul>
       )}
       <button className="button" onClick={handleMensajesClick}>
-        Mensajes
+        <CiMail /> Mensajes
       </button>
       <button className="button" onClick={handleSettingsClick}>
-        Configuracion
+        <CiSettings /> Configuracion
       </button>
       <button className="buttonlogout" onClick={() => supabase.auth.signOut()}>
-        logout
+        <CiLogin /> Salir
       </button>
     </div>
   );

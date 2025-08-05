@@ -7,12 +7,19 @@
   color-scheme: light dark;
   color: #495057;
   background-color: #f8f9fa;
-
-
+  --colorPrinClaro: #fc476a;
+  --colorPrinOcuro: #ec339b;
+  --colorTextoOscuro: #141111;
+  --colorTextoOpaco: #363333;
+  --colorTextoClaro: #f5f5f5;
+background-color: rgb(251, 253, 255);;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+body{
+background-color: rgb(251, 253, 255);;
 }
 
 a {

@@ -10,7 +10,8 @@
   background-color: #f8f9fa;
   border-right: 1px solid #dee2e6; 
   padding: 20px;
-  /* box-sizing: border-box; */
+  margin: 0;
+  box-sizing: border-box; 
   position: fixed; 
   left: 0;
   top: 0;
@@ -63,7 +64,7 @@
 
 .inputbuscar:focus {
   outline: none;
-  border-color: #86b7fe;
+  border-color: #6379a7;
   box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
 }
 
@@ -72,10 +73,10 @@
   width: 100%;
   padding: 12px 15px;
   margin-top: auto; /* Empuja el botón hacia abajo */
-  background-color: #f8d7da;
-  border: 1px solid #f5c2c7;
+  background-color: #d9cb70;
+  border: 1px solid #a8a793;
   border-radius: 6px;
-  color: #842029;
+  color: #495057;
   font-size: 16px;
   text-align: left;
   cursor: pointer;
@@ -83,8 +84,8 @@
 }
 
 .buttonlogout:hover {
-  background-color: #f1aeb5;
-  border-color: #ea868f;
+  background-color: #6379a7;
+  border-color: #495057;
 }
 
 ul li {

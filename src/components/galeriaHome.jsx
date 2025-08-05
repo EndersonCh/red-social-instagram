@@ -100,9 +100,9 @@ const HomeGallery = ({ userId }) => {
   };
 
   return (
-    <div>
+    <div className="container-padre">
       {images.map((image, i) => (
-        <div key={i} className="publicacion-">
+        <div key={i} className="publicacion">
           <img
             src={image.url}
             alt={`Imagen ${i + 1}`}
