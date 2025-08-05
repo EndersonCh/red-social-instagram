@@ -4,6 +4,8 @@ import Home from "./pages/home";
 import SignUp from "./pages/signUp";
 import Profile from "./pages/profile";
 import Settings from "./pages/settings";
+import Mensajes from "./pages/mensajes";
+import Chat from "./pages/chat";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { supabase } from "./services/supabase";
@@ -55,6 +57,14 @@ function App() {
         <Route
           path="/settings"
           element={user ? <Settings /> : <Navigate to="/login" replace />}
+        />
+        <Route
+          path="/mensajes"
+          element={user ? <Mensajes /> : <Navigate to="/login" replace />}
+        />
+        <Route
+          path="/mensajes/chat/:id_recep"
+          element={user ? <Chat /> : <Navigate to="/login" replace />}
         />
         <Route path="/profile/:userId" element={<Profile />} />
       </Routes>

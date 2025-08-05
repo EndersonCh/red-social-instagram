@@ -166,7 +166,7 @@ const Profile = () => {
       <h2>{datosUser.perfil.name || datosUser.perfil.email}</h2>
       <br />
       <UserGallery userId={datosUser.id} />
-      <BarraMenu />
+      <BarraMenu userId={datosUser.id} />
       <br />
     </div>
   );

@@ -44,6 +44,9 @@ const BarraMenu = () => {
   const handleSettingsClick = () => {
     navigate("/settings");
   };
+  const handleMensajesClick = () => {
+    navigate("/mensajes");
+  };
 
   return (
     <div>
@@ -70,7 +73,7 @@ const BarraMenu = () => {
           ))}
         </ul>
       )}
-      <button onClick={handleHomeClick}>Mensajes</button>
+      <button onClick={handleMensajesClick}>Mensajes</button>
       <button onClick={handleSettingsClick}>Configuracion</button>
       <button onClick={() => supabase.auth.signOut()}>logout</button>
     </div>

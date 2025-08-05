@@ -54,7 +54,7 @@ const Home = () => {
       <h4>Galeria</h4>
       <HomeGallery userId={datosUser.id} />
       <div>
-        <BarraMenu />
+        <BarraMenu userId={datosUser.id} />
       </div>
     </div>
   );

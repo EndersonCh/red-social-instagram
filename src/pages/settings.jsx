@@ -148,7 +148,7 @@ const Settings = () => {
         <button type="submit">Entrar</button>
       </form>
       <br />
-      <BarraMenu />
+      <BarraMenu userId={datosUser.id} />
       <br />
     </div>
   );
