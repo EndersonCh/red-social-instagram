@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import BarraMenu from "../components/barraMenu";
 import UserGallery from "../components/galeriaMedia";
 import { useParams } from "react-router-dom";
+import "../styles/profile.css";
 
 const Profile = () => {
   const [datosUser, setDatosUser] = useState(null);
@@ -139,36 +140,54 @@ const Profile = () => {
     actualizarContadores(datosUser.id);
   }
   return (
-    <div>
-      <h1>Perfil</h1>
-
-      <img
-        src={datosUser.perfil?.image_url}
-        alt="foto de usuario"
-        style={{ width: 150, borderRadius: "50%" }}
-      />
-      {miPerfil == false && id_auth && (
-        <>
-          <div>
-            <button onClick={handleSeguirClick} hidden={seguido}>
-              Seguir
-            </button>
-            <button onClick={handleDejarClick} hidden={!seguido}>
-              Dejar de Seguir
-            </button>
-            <button>Mensaje</button>
+    <>
+      <BarraMenu className="contenedor-izquierda" userId={datosUser.id} />
+      <div className="contenedorPrincipal2">
+        <div className="cabecera-profile">
+          <div className="cabecera-izq">
+            <img
+              className="foto-perfil-2"
+              src={datosUser.perfil?.image_url}
+              alt="foto de usuario"
+            />
           </div>
-        </>
-      )}
-      <h4>Seguidores {contSeguidores}</h4>
-      <h4>Seguidos {contSeguidos}</h4>
+          <div className="cabecera-der">
+            <div className="container-cab-datos">
+              <h3>{datosUser.perfil.name}</h3>
+              <h4>@{datosUser.perfil.username}</h4>
+            </div>
+            <div className=" container-cabezera-seguidores">
+              <div className="seguidores-c">
+                <h3>{contSeguidores}</h3>
+                <h4>Seguidores </h4>
+              </div>
+              <div className="seguidos-c">
+                <h3> {contSeguidos}</h3>
+                <h4>Seguidos</h4>
+              </div>
+            </div>
+            {miPerfil == false && id_auth && (
+              <>
+                <div className="container-cabezera-barra-seguir">
+                  <button onClick={handleSeguirClick} hidden={seguido}>
+                    Seguir
+                  </button>
+                  <button onClick={handleDejarClick} hidden={!seguido}>
+                    Dejar de Seguir
+                  </button>
+                  <button>Mensaje</button>
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+        <br />
+        <div className="User-galeria">
+          <UserGallery userId={datosUser.id} />
+        </div>
+      </div>
       <br />
-      <h2>{datosUser.perfil.name || datosUser.perfil.email}</h2>
-      <br />
-      <UserGallery userId={datosUser.id} />
-      <BarraMenu userId={datosUser.id} />
-      <br />
-    </div>
+    </>
   );
 };
 

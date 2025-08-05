@@ -78,75 +78,42 @@ const UserGallery = ({ userId }) => {
   };
 
   return (
-    <div>
+    <div className="contenedor-galeria">
       {images.map((image, i) => (
         <div key={i} className="publicacion-">
-          <img
-            src={image.url}
-            alt={`Imagen ${i + 1}`}
-            className="publicacion-imagen"
-            loading="lazy"
-            style={{ width: 300 }}
-          />
-          <p className="fecha-publicacion">
-            {new Date(image.created_at).toLocaleString()}
-          </p>
-          <button onClick={() => abrirModal(image)}>Comentarios</button>
-          <input
-            type="text"
-            value={nuevoMensaje}
-            onChange={(e) => setNuevoMensaje(e.target.value)}
-            placeholder="Escribe un mensaje..."
-            style={{ width: "80%", padding: "10px", fontSize: "16px" }}
-          />
-          <button
-            onClick={() => enviarMensaje(image.key)}
-            style={{ padding: "10px", marginLeft: "10px" }}
-          >
-            enviar
-          </button>
+          <div className="publicacion-imagen">
+            <img src={image.url} alt={`Imagen ${i + 1}`} loading="lazy" />
+          </div>
+          <div className="fecha-publicacion">
+            <p className="fecha-publicacion">
+              {new Date(image.created_at).toLocaleString()}
+            </p>
+          </div>
+          <div className="comentarios">
+            <button onClick={() => abrirModal(image)}>Comentarios</button>
+          </div>
+          <div className="envira-mensajes">
+            <input
+              type="text"
+              value={nuevoMensaje}
+              onChange={(e) => setNuevoMensaje(e.target.value)}
+              placeholder="Escribe un mensaje..."
+            />
+            <button onClick={() => enviarMensaje(image.key)}>enviar</button>
+          </div>
         </div>
       ))}
       {mostrarModal && imgSeleccion && (
-        <div
-          className="modal"
-          style={{
-            position: "fixed",
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundColor: "rgba(0,0,0,0.6)",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            zIndex: 1000,
-          }}
-        >
-          <div
-            style={{
-              background: "white",
-              padding: "20px",
-              maxWidth: "90%",
-              maxHeight: "90%",
-              display: "flex",
-              gap: "20px",
-              overflow: "auto",
-            }}
-          >
-            <img
-              src={imgSeleccion.url}
-              alt="Imagen Ampliada"
-              style={{ maxHeight: "80vh", maxWidth: "50vw" }}
-            />
-            <div style={{ flex: 1 }}>
+        <div className="modal-grande-perfil">
+          <div className="modal-pequeño-perfil">
+            <div className="imagen-modal">
+              <img src={imgSeleccion.url} alt="Imagen" />
+            </div>
+            <div className="datos-modal">
               <h3>Comentarios</h3>
-              <div style={{ maxHeight: "60vh", overflowY: "auto" }}>
+              <div>
                 {comentarios.map((comentario, index) => (
-                  <div
-                    key={index}
-                    style={{ marginBottom: "10px", color: "#000000" }}
-                  >
+                  <div key={index}>
                     <strong>{comentario.profiles.username}:</strong>{" "}
                     {comentario.texto}
                     <br />
@@ -161,7 +128,6 @@ const UserGallery = ({ userId }) => {
                 value={nuevoMensaje}
                 onChange={(e) => setNuevoMensaje(e.target.value)}
                 placeholder="Escribe un mensaje..."
-                style={{ width: "100%", marginTop: "10px" }}
               />
               <button
                 onClick={() => {
