@@ -2,7 +2,7 @@ import { supabase } from "../services/supabase";
 import { useEffect, useState } from "react";
 import BarraMenu from "../components/barraMenu";
 import { useNavigate } from "react-router-dom";
-
+import "../styles/mensajes.css";
 const Mensajes = () => {
   const navigate = useNavigate();
   const [conversaciones, setConversaciones] = useState([]);
@@ -151,45 +151,49 @@ const Mensajes = () => {
   };
   return (
     <>
-      <div>Mensajes</div>
-      <input
-        type="text"
-        placeholder="Buscar Usuarios"
-        onChange={(e) => setBusqueda(e.target.value)}
-        value={busqueda}
-      />
-      {resultados.length > 0 && (
-        <ul>
-          {resultados.map((usuario) => (
-            <li
-              key={usuario.user_id}
-              onClick={() => handleSeleccionar(usuario)}
-            >
-              {usuario.name} ({usuario.username})
-            </li>
-          ))}
-        </ul>
-      )}
-      <ul>
-        {conversaciones.length > 0 ? (
-          conversaciones.map((conv) => (
-            <li
-              key={conv.usuarioId}
-              onClick={() => handleSeleccionar({ user_id: conv.usuarioId })}
-              style={{ cursor: "pointer", marginBottom: "10px" }}
-            >
-              <strong>{conv.name}</strong> ({conv.username})<br />
-              <small>
-                Último mensaje: {new Date(conv.fecha).toLocaleString()}
-              </small>
-            </li>
-          ))
-        ) : (
-          <div>No hay conversaciones aún.</div>
-        )}
-      </ul>
-
       <BarraMenu userId={userId} />
+      <div className="mensajes-page">
+        <h2>Mensajes</h2>
+
+        <input
+          type="text"
+          placeholder="Buscar Usuarios"
+          onChange={(e) => setBusqueda(e.target.value)}
+          value={busqueda}
+        />
+
+        {resultados.length > 0 && (
+          <ul className="ul-resultados">
+            {resultados.map((usuario) => (
+              <li
+                key={usuario.user_id}
+                onClick={() => handleSeleccionar(usuario)}
+              >
+                {usuario.name} ({usuario.username})
+              </li>
+            ))}
+          </ul>
+        )}
+
+        <ul className="ul-conversaciones">
+          {conversaciones.length > 0 ? (
+            conversaciones.map((conv) => (
+              <li
+                key={conv.usuarioId}
+                onClick={() => handleSeleccionar({ user_id: conv.usuarioId })}
+                style={{ cursor: "pointer", marginBottom: "10px" }}
+              >
+                <strong>{conv.name}</strong> ({conv.username})<br />
+                <small>
+                  Último mensaje: {new Date(conv.fecha).toLocaleString()}
+                </small>
+              </li>
+            ))
+          ) : (
+            <div>No hay conversaciones aún.</div>
+          )}
+        </ul>
+      </div>
     </>
   );
 };

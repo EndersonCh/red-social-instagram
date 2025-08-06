@@ -149,9 +149,11 @@
 }
 
 .comentarios-modal2 > div {
-  margin-bottom: 12px;
-  padding-bottom: 4px;
-  border-bottom: 1px solid #eee;
+      display: flex;
+     justify-content: flex-start; 
+     padding: 5px;
+     margin: 0px 10px;
+     
 }
 
 .botones-fondo {
@@ -175,7 +177,7 @@
   background-color: #fffafb;
   color: #495057;
   border: 1px solid #fc476a;
- padding: auto;
+ 
   border-radius: 20px;
   cursor: pointer;
   font-size: 14px;

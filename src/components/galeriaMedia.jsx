@@ -61,7 +61,7 @@ const UserGallery = ({ userId }) => {
 
     const { data, error } = await supabase
       .from("comentarios")
-      .select("texto,autor_id,created_at,profiles(username)")
+      .select("texto,autor_id,created_at,profiles(username,image_url)")
       .eq("media_key", imagen.key)
       .order("created_at", { ascending: true });
 
@@ -91,7 +91,10 @@ const UserGallery = ({ userId }) => {
             </p>
           </div>
           <div className="comentarios">
-            <button onClick={() => abrirModal(image)}>Comentarios</button>
+            <button onClick={() => abrirModal(image)}>
+              <CiChat1 />
+              Comentarios
+            </button>
           </div>
           <div className="envira-mensajes">
             <input
@@ -100,7 +103,9 @@ const UserGallery = ({ userId }) => {
               onChange={(e) => setNuevoMensaje(e.target.value)}
               placeholder="Escribe un mensaje..."
             />
-            <button onClick={() => enviarMensaje(image.key)}>enviar</button>
+            <button onClick={() => enviarMensaje(image.key)}>
+              <CiLocationArrow1 /> enviar
+            </button>
           </div>
         </div>
       ))}
@@ -114,14 +119,16 @@ const UserGallery = ({ userId }) => {
               <h3>Comentarios</h3>
               <div className="comentarios-modal2">
                 {comentarios.map((comentario, i) => (
-                  <div key={i}>
-                    <strong>{comentario.profiles.username}:</strong>{" "}
-                    {comentario.texto}
-                    <br />
-                    <small>
-                      {new Date(comentario.created_at).toLocaleString()}
-                    </small>
-                  </div>
+                  <>
+                    <div key={i}>
+                      <strong>{comentario.profiles.username}:</strong>{" "}
+                      {comentario.texto}
+                      <br />
+                      <small>
+                        {new Date(comentario.created_at).toLocaleString()}
+                      </small>
+                    </div>
+                  </>
                 ))}
               </div>
               <div className="botones-fondo">
@@ -137,7 +144,7 @@ const UserGallery = ({ userId }) => {
                     abrirModal(imgSeleccion); // recargar comentarios
                   }}
                 >
-                  Enviar
+                  <CiLocationArrow1 /> Enviar
                 </button>
                 <button onClick={cerrarModal}>Cerrar</button>
               </div>
