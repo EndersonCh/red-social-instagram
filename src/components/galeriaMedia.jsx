@@ -1,6 +1,7 @@
 import { supabase } from "../services/supabase";
 import { useState, useEffect } from "react";
-
+import "../styles/galeriaMedia.css";
+import { CiChat1, CiTurnL1, CiLocationArrow1 } from "react-icons/ci";
 const UserGallery = ({ userId }) => {
   const [images, setImages] = useState([]);
   const [cargando, setCargando] = useState(true);
@@ -78,14 +79,14 @@ const UserGallery = ({ userId }) => {
   };
 
   return (
-    <div className="contenedor-galeria">
+    <div className="contenedor-galeria2">
       {images.map((image, i) => (
-        <div key={i} className="publicacion-">
-          <div className="publicacion-imagen">
+        <div key={i} className="publicacion-2">
+          <div className="publicacion-imagen2">
             <img src={image.url} alt={`Imagen ${i + 1}`} loading="lazy" />
           </div>
           <div className="fecha-publicacion">
-            <p className="fecha-publicacion">
+            <p className="fecha-publicacion-p">
               {new Date(image.created_at).toLocaleString()}
             </p>
           </div>
@@ -106,14 +107,14 @@ const UserGallery = ({ userId }) => {
       {mostrarModal && imgSeleccion && (
         <div className="modal-grande-perfil">
           <div className="modal-pequeño-perfil">
-            <div className="imagen-modal">
+            <div className="imagen-modal2">
               <img src={imgSeleccion.url} alt="Imagen" />
             </div>
-            <div className="datos-modal">
+            <div className="datos-modal2">
               <h3>Comentarios</h3>
-              <div>
-                {comentarios.map((comentario, index) => (
-                  <div key={index}>
+              <div className="comentarios-modal2">
+                {comentarios.map((comentario, i) => (
+                  <div key={i}>
                     <strong>{comentario.profiles.username}:</strong>{" "}
                     {comentario.texto}
                     <br />
@@ -123,24 +124,23 @@ const UserGallery = ({ userId }) => {
                   </div>
                 ))}
               </div>
-              <input
-                type="text"
-                value={nuevoMensaje}
-                onChange={(e) => setNuevoMensaje(e.target.value)}
-                placeholder="Escribe un mensaje..."
-              />
-              <button
-                onClick={() => {
-                  enviarMensaje(imgSeleccion.key);
-                  abrirModal(imgSeleccion); // recargar comentarios
-                }}
-                style={{ marginTop: "5px" }}
-              >
-                Enviar
-              </button>
-              <button onClick={cerrarModal} style={{ marginTop: "10px" }}>
-                Cerrar
-              </button>
+              <div className="botones-fondo">
+                <input
+                  type="text"
+                  value={nuevoMensaje}
+                  onChange={(e) => setNuevoMensaje(e.target.value)}
+                  placeholder="Escribe un mensaje..."
+                />
+                <button
+                  onClick={() => {
+                    enviarMensaje(imgSeleccion.key);
+                    abrirModal(imgSeleccion); // recargar comentarios
+                  }}
+                >
+                  Enviar
+                </button>
+                <button onClick={cerrarModal}>Cerrar</button>
+              </div>
             </div>
           </div>
         </div>

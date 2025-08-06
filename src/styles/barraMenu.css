@@ -104,7 +104,7 @@ ul li:hover {
   background-color: #f8f9fa;
 }
 
-/* Media query para pantallas pequeñas */
+
 @media (max-width: 768px) {
   .contenedor {
     width: 100%;
@@ -116,7 +116,7 @@ ul li:hover {
   }
   
   .buttonlogout {
-    margin-top: 20px; /* Ajuste para móviles */
+    margin-top: 20px;
   }
 }
 

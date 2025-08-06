@@ -225,5 +225,5 @@ border-bottom: 1px solid #ccc;
 
 .modal-botones button:hover {
   background-color: #fc476a;
-  color: white; /* Agregado para que el texto sea visible */
+  color: white; 
 }
