@@ -1,4 +1,4 @@
-/* --- GALERÍA --- */
+
 .contenedor-galeria2 {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -21,7 +21,7 @@
   position: relative;
   width: 100%;
   
-  padding-top: 75%; /* ajusta ratio; pon 100% para cuadrado */
+  padding-top: 75%; 
   overflow: hidden;
 }
 

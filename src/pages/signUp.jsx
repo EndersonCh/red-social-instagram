@@ -2,6 +2,7 @@ import React from "react";
 import { supabase } from "../services/supabase";
 import { useState, useEffect } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
+import "../styles/signUp.css";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -60,6 +61,13 @@ const SignUp = () => {
 
   return (
     <div className="cont_login">
+      <img
+        className="logo2"
+        src={
+          "https://ylazueywekhmwffebgke.supabase.co/storage/v1/object/public/recursos//logo.png"
+        }
+        alt="logo"
+      />
       <form onSubmit={handleSubmit}>
         <input
           type="email"

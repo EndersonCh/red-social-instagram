@@ -168,7 +168,7 @@ const HomeGallery = ({ userId }) => {
                 <button
                   onClick={() => {
                     enviarMensaje(imgSeleccion.key);
-                    abrirModal(imgSeleccion); // recargar comentarios
+                    abrirModal(imgSeleccion);
                   }}
                 >
                   <CiLocationArrow1 /> Enviar

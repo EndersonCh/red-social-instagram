@@ -1,6 +1,6 @@
-/* Contenedor general del chat */
+
 .chat {
-  margin-left: 280px; /* ajustar si la barra lateral tiene otro ancho */
+  margin-left: 280px; 
   padding: 24px 32px;
   box-sizing: border-box;
   min-height: 100vh;

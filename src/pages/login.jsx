@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { supabase } from "../services/supabase";
-import { Routes, Route, useNavigate } from "react-router-dom"; // ya lo tienes configurado
-// No necesitas importar createClient de nuevo
+import { Routes, Route, useNavigate } from "react-router-dom";
+import "../styles/login.css";
 
 const Login = () => {
   const navigate = useNavigate();
-  const [email, setEmail] = useState(""); // Puede ser correo o username
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loginExitoso, setLoginExitoso] = useState(false);
   const handleSubmit = async (e) => {
@@ -59,6 +59,13 @@ const Login = () => {
 
   return (
     <div className="cont_login">
+      <img
+        className="logo-logo"
+        src={
+          "https://ylazueywekhmwffebgke.supabase.co/storage/v1/object/public/recursos//logo.png"
+        }
+        alt="logo"
+      />
       <form onSubmit={handleSubmit}>
         <input
           type="text"

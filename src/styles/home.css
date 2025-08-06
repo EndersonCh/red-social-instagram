@@ -1,4 +1,4 @@
-/* Estilos generales */
+
 body {
   margin: 0;
   padding: 0;
@@ -7,8 +7,8 @@ body {
 .contenedorPrincipal {
   display: flex;
   text-align: center;
-  margin-left: 300px;        /* espacio para el sidebar izquierdo fijo */
-  margin-right: 20vw;        /* espacio para el sidebar derecho fijo */
+  margin-left: 300px;     
+  margin-right: 20vw;        
   width: calc(100% - 300px - 6vw);
   
   min-height: 100vh;
@@ -30,11 +30,14 @@ body {
   background-color: #ffffff;
   box-shadow: -1px 0 5px rgba(0, 0, 0, 0.1);
   overflow-y: auto;
-  /* padding: 1rem; */
   box-sizing: border-box;
   z-index: 10;
   justify-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;    
   
+
 }
 
 .foto-usuario{
@@ -47,7 +50,12 @@ body {
     width: 100px;
 }
 
-
+.datos-user{
+    text-align: center;
+      border-bottom: 2px solid;             
+  border-bottom-color: #a7a7a8;   
+    ;
+}
 
 .datos-user h2,h3,h5{
     margin: 0;

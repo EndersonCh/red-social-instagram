@@ -1,0 +1,92 @@
+
+.cont_login {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: center;
+  justify-content: center;
+  background: #f5f7fa;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+
+.logo2 {
+  width: 300px;
+  height: 300px;
+  object-fit: contain;
+  margin-bottom: 8px;
+}
+
+
+.cont_login form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+  max-width: 360px;
+  background: #ffffff;
+  padding: 28px 32px;
+  border-radius: 12px;
+  box-shadow: 0 16px 40px rgba(31, 45, 61, 0.08);
+  box-sizing: border-box;
+}
+
+
+.cont_login input[type="text"],
+.cont_login input[type="email"],
+.cont_login input[type="password"] {
+  padding: 12px 14px;
+  font-size: 1rem;
+  border: 1px solid #d1dae7;
+  border-radius: 8px;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+
+.cont_login input:focus {
+  border-color: #ec339b;
+  box-shadow: 0 0 0 3px rgba(236, 51, 155, 0.2);
+}
+
+.cont_login button[type="submit"] {
+  padding: 12px 16px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  background: #ec339b;
+  color: white;
+  cursor: pointer;
+  transition: filter 0.2s;
+}
+
+.cont_login button[type="submit"]:hover {
+  filter: brightness(1.08);
+}
+
+.cont_login > button {
+  background: transparent;
+  border: 1px solid #ec339b;
+  color: #070808;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+  margin-top: 6px;
+}
+
+.cont_login > button:hover {
+  background-color: #ec339b;
+  color: white;
+}
+
+.cont_login input:disabled,
+.cont_login button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

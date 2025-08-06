@@ -4,22 +4,22 @@
     display: block; 
  
   padding: 20px;
-  gap: 10px; /* Espacio entre las publicaciones */
-  justify-content: center; /* Centra las publicaciones en la pantalla */
+  gap: 10px; 
+  justify-content: center; 
  
 
 }
 
-/* Estilos para cada publicación individual (la tarjeta) */
+
 .publicacion {
   background-color: #fff;
-  border-radius: 8px; /* Bordes redondeados */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil para el efecto de tarjeta */
+  border-radius: 8px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
   padding: 15px;
   max-width: 60%;
   width: 100%;
   text-align: center;
-  margin: 0 auto 20px; /* Aquí está el cambio */
+  margin: 0 auto 20px;
 }
 
 .espacio-boton{
@@ -27,17 +27,17 @@
      justify-content: flex-end; 
 }
 
-/* Estilos para la imagen dentro de la publicación */
+
 .publicacion-imagen {
   border-radius: 6px;
   max-width: 100%;
   height: auto;
   display: block;
   margin-bottom: 10px;
-  object-fit: cover; /* Asegura que la imagen cubra el espacio sin distorsionarse */
+  object-fit: cover; 
 }
 
-/* Estilos para la fecha de la publicación */
+
 .fecha-publicacion {
   color: #777;
   font-size: 14px;
@@ -45,13 +45,13 @@
   margin-bottom: 10px;
 }
 
-/* Estilos para el botón de comentarios */
+
 .publicacion button {
   background-color: #fffafb;
     color: #495057;
   border-color: #fc476a;
   border-style: solid;
-  border-width: 1px; /* El cambio aquí */
+  border-width: 1px; 
   padding: 8px 16px;
   border-radius: 20px;
   cursor: pointer;
@@ -65,7 +65,7 @@
   background-color: #fc476a;
 }
 
-/* Estilos para el cuadro de texto de la publicación */
+
 .cuadro-texto {
   display: flex;
   margin-top: 15px;
@@ -73,7 +73,7 @@
 }
 
 .cuadro-texto input {
-  flex-grow: 1; /* El input se expande para llenar el espacio */
+  flex-grow: 1; 
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 20px;
@@ -84,18 +84,18 @@
 .cuadro-texto button {
   padding: 8px 12px;
   margin-left: 0;
-  white-space: nowrap; /* Evita que el texto del botón se rompa */
+  white-space: nowrap;
 }
 
-/* Estilos para el modal */
+
 .modal {
-  /* Los estilos inline ya hacen gran parte del trabajo, pero podemos refinarlo */
+ 
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.7); /* Oscurece el fondo */
+  background-color: rgba(0, 0, 0, 0.7); 
   display: flex;
   justify-content: center;
   align-items: center;
@@ -116,9 +116,9 @@
   overflow: hidden;
 }
 
-/* Estilos para el contenedor de la imagen en el modal */
+
 .modal-modal-imagen  {
-  max-height: 85vh; /* Ajusta el tamaño de la imagen */
+  max-height: 85vh; 
   max-width: 50vw;
   object-fit: contain;
   border-radius: 8px;
@@ -127,26 +127,26 @@
 .modal-bloque-data{
     
     padding: 10px;
-    height: 100%; /* Ocupa el 100% de la altura de .modal-chico */
+    height: 100%; 
   background: #f5f5f5;
-  display: flex; /* Se convierte en un contenedor flex */
+  display: flex;
   flex-direction: column;
    overflow: auto; 
  
 }
 
-/* Estilos para el contenedor de comentarios en el modal */
+
 .modal-comentarios {
      margin-top: 10px;
   display: flex;
   gap: 10px;
-  align-items: flex-start; /* Alinea el avatar con el contenido */
+  align-items: flex-start; 
   margin-bottom: 12px;
 }
 .modal-comentarios small {
-  /* La clave es esta línea */
+
   display: block; 
-  margin-top: 5px; /* Un poco de espacio arriba para separar del texto del comentario */
+  margin-top: 5px; 
   color: #888;
   font-size: 0.8rem; 
 }
@@ -162,7 +162,7 @@ border-bottom: 1px solid #ccc;
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  object-fit: cover; /* importante para que la imagen rellene el círculo sin deformarse */
+  object-fit: cover; 
   flex-shrink: 0;
 }
 .modal-comentario-texto{
@@ -194,9 +194,8 @@ border-bottom: 1px solid #ccc;
   justify-content: flex-end;
   gap: 10px;
   
-  /* Estas dos líneas lo posicionan en el pie */
-  margin-top: auto; /* Empuja el contenedor de botones al final */
-   /* Un poco de espacio arriba */
+
+  margin-top: auto; 
     padding: 10px;
   border-top: 1px solid #ccc; 
   
