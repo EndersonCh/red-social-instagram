@@ -1,0 +1,126 @@
+/* Contenedor general del chat */
+.chat {
+  margin-left: 280px; /* ajustar si la barra lateral tiene otro ancho */
+  padding: 24px 32px;
+  box-sizing: border-box;
+  min-height: 100vh;
+  background: #f5f7fa;
+  font-family: system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  color: #1f2d3d;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.chat h2 {
+  margin: 0;
+  font-size: 1.75rem;
+  font-weight: 600;
+}
+
+
+.caja-mensajes {
+  flex: 1;
+  background: #ffffff;
+  border: 1px solid #d9e2ec;
+  border-radius: 12px;
+  padding: 16px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-height: 70vh;
+  box-shadow: 0 8px 24px rgba(31,45,61,0.04);
+}
+
+
+.caja-mensajes ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+
+.caja-mensajes li {
+  display: flex;
+  max-width: 75%;
+  
+  padding: 10px 14px;
+  border-radius: 14px;
+  word-wrap: break-word;
+ 
+ 
+}
+
+.mensaje-enviado {
+  background: #d1e7ff;
+  align-self: flex-end;
+  border-top-right-radius: 4px;
+}
+
+.mensaje-recibido {
+  background: #f0f4f8;
+  align-self: flex-start;
+  border-top-left-radius: 4px;
+}
+
+
+.herramientas {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+  background: #fff;
+  padding: 14px 16px;
+  border-radius: 10px;
+  border: 1px solid #d9e2ec;
+  box-shadow: 0 6px 18px rgba(31,45,61,0.03);
+}
+
+.herramientas input[type="text"] {
+  flex: 1 1 auto;
+  padding: 10px 14px;
+  font-size: 1rem;
+  border: 1px solid #cfd8e7;
+  border-radius: 8px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.herramientas button {
+     display: flex;
+    margin: 10px;
+    height: 38px;
+  background-color: #fffafb;
+  color: #495057;
+  border: 1px solid #fc476a;
+ 
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+.herramientas button:hover {
+   background-color: #fc476a;
+  color: white; 
+}
+
+.minombre-mens {
+ background: #f0f4f8;
+  align-self: flex-start; 
+  border-bottom-left-radius: 20px;
+  padding: 10px;
+}
+
+.sunombre-mens {
+ background: #ffe1f1;
+  align-self: flex-end; 
+  border-bottom-right-radius: 20px;
+  padding: 10px;
+  
+}

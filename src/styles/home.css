@@ -26,19 +26,22 @@ body {
   margin: 0;
   padding: 20px;
   height: 100vh;
-  width: 20vw; /* 20% del viewport */
+  width: 20vw; 
   background-color: #ffffff;
   box-shadow: -1px 0 5px rgba(0, 0, 0, 0.1);
   overflow-y: auto;
   /* padding: 1rem; */
   box-sizing: border-box;
   z-index: 10;
+  justify-items: center;
+  
 }
 
 .foto-usuario{
     margin-top: 2rem;
+    margin-left: 20px;
     border-radius: 50%;
-    border-color: #6379a7;
+    border-color: #ec339b; 
     border-style: solid;
     height: 100px;
     width: 100px;
@@ -46,7 +49,7 @@ body {
 
 
 
-.datos-user h2,h3,h4{
+.datos-user h2,h3,h5{
     margin: 0;
     padding: 0;
     color: #495057;

@@ -2,12 +2,16 @@ import { supabase } from "../services/supabase";
 import { useEffect, useState } from "react";
 import BarraMenu from "../components/barraMenu";
 import { useParams } from "react-router-dom";
+import { CiChat1, CiTurnL1, CiLocationArrow1 } from "react-icons/ci";
+import "../styles/chat.css";
 
 const Chat = () => {
   const { id_recep } = useParams();
   const [mensajes, setMensajes] = useState([]);
   const [nuevoMensaje, setNuevoMensaje] = useState("");
   const [miId, setMiId] = useState(null);
+  const [miNombre, setmiNombre] = useState("");
+  const [suNombre, setsuNombre] = useState("");
 
   useEffect(() => {
     const obtenerUserAuth = async () => {
@@ -38,8 +42,31 @@ const Chat = () => {
     }
   };
 
+  const cargarUsername = async () => {
+    if (!miId || !id_recep) {
+      return;
+    }
+    const { data: miNom, error1 } = await supabase
+      .from("profiles")
+      .select("username")
+      .eq("user_id", miId)
+      .single();
+
+    const { data: suNom, error2 } = await supabase
+      .from("profiles")
+      .select("username")
+      .eq("user_id", id_recep)
+      .single();
+    if (error1 || error2) {
+      console.error("Error al cargar los datos");
+    }
+    setmiNombre(miNom?.username || "Yo ");
+    setsuNombre(suNom?.username || "Ellx ");
+  };
+
   useEffect(() => {
     if (miId && id_recep) {
+      cargarUsername();
       cargarMensajes();
     }
   }, [miId, id_recep]);
@@ -63,54 +90,46 @@ const Chat = () => {
 
   return (
     <>
-      <div style={{ padding: "20px" }}>
+      <BarraMenu userId={miId} />
+      <div className="chat">
         <h2>Chat</h2>
-        <div
-          style={{
-            maxHeight: "300px",
-            overflowY: "auto",
-            marginBottom: "10px",
-            border: "1px solid #ccc",
-            padding: "10px",
-          }}
-        >
-          <ul style={{ listStyle: "none", padding: 0 }}>
+        <div className="caja-mensajes">
+          <ul>
             {mensajes.map((m, i) => (
-              <li
-                key={i}
-                style={{
-                  marginBottom: "10px",
-                  textAlign: m.emisor_id === miId ? "right" : "left",
-                }}
-              >
-                <span
-                  style={{
-                    background: m.emisor_id === miId ? "#acf" : "#eee",
-                    padding: "5px 10px",
-                    borderRadius: "10px",
-                    display: "inline-block",
-                  }}
-                >
-                  {m.texto}
-                </span>
+              <li key={i}>
+                <div className="mensaje-flujo">
+                  {m.emisor_id === miId ? (
+                    <>
+                      <div className="minombre-mens">
+                        <strong>{miNombre}:</strong>
+                        <span>{m.texto}</span>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <div className="sunombre-mens">
+                        <strong>{suNombre}:</strong>
+                        <span>{m.texto}</span>
+                      </div>
+                    </>
+                  )}
+                </div>
               </li>
             ))}
           </ul>
         </div>
-        <input
-          type="text"
-          value={nuevoMensaje}
-          onChange={(e) => setNuevoMensaje(e.target.value)}
-          placeholder="Escribe un mensaje..."
-          style={{ width: "80%", padding: "10px", fontSize: "16px" }}
-        />
-        <button
-          onClick={enviarMensaje}
-          style={{ padding: "10px", marginLeft: "10px" }}
-        >
-          enviar
-        </button>
-        <BarraMenu userId={miId} />
+        <div className="herramientas">
+          <input
+            type="text"
+            value={nuevoMensaje}
+            onChange={(e) => setNuevoMensaje(e.target.value)}
+            placeholder="Escribe un mensaje..."
+          />
+          <button onClick={enviarMensaje}>
+            <CiLocationArrow1 />
+            Enviar
+          </button>
+        </div>
       </div>
     </>
   );

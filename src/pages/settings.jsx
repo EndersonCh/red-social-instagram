@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { supabase } from "../services/supabase";
 import { v4 as uuidv4 } from "uuid";
+import "../styles/settings.css";
 // import { useNavigate } from "react-router-dom";
 
 import BarraMenu from "../components/barraMenu";
@@ -10,6 +11,8 @@ const Settings = () => {
   const [uploading, setUploading] = useState(false);
   const [name_n, setName] = useState("");
   const [userName, setUserName] = useState("");
+  const imageRef = useRef(null);
+
   useEffect(() => {
     const infoUser = async () => {
       const {
@@ -73,6 +76,10 @@ const Settings = () => {
     setUploading(false);
   };
 
+  const handleClick = () => {
+    imageRef.current.click();
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -109,48 +116,65 @@ const Settings = () => {
   return !datosUser || !datosUser.perfil ? (
     <div>Cargando...</div>
   ) : (
-    <div>
-      <h1>Perfil</h1>
-      <img
-        className={"Foto_user"}
-        src={datosUser.perfil?.image_url}
-        alt="foto de usuario"
-        style={{ width: 150, borderRadius: "50%" }}
-      />
-      <br />
-      <input
-        type="file"
-        accept="image/*"
-        onChange={handleImageUpload}
-        disabled={uploading}
-      />
-      {uploading && <p>Subiendo foto</p>}
-      <hr />
-      <h2>Nombre: {datosUser.perfil.name}</h2>
-      <input type="text" name="Nombre" />
-      <hr />
-      <h2>Usuario: {datosUser.perfil.username}</h2>
-      <hr />
-      <h2>Correo electronico {datosUser.email}</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          value={userName}
-          placeholder={datosUser.perfil.username}
-          onChange={(e) => setUserName(e.target.value)}
-        />
-        <input
-          type="text"
-          value={name_n}
-          placeholder={datosUser.perfil.name}
-          onChange={(e) => setName(e.target.value)}
-        />
-        <button type="submit">Entrar</button>
-      </form>
-      <br />
+    <>
       <BarraMenu userId={datosUser.id} />
-      <br />
-    </div>
+
+      <div className="container-set">
+        <div className="foto-perfil-container">
+          <div className="foto-img">
+            <img
+              className={"Foto_user"}
+              src={datosUser.perfil?.image_url}
+              alt="foto de usuario"
+            />
+          </div>
+          <div className="boton-subir">
+            <button
+              onClick={handleClick}
+              disabled={uploading}
+              className="boton-cambiar-foto"
+            >
+              {uploading ? "Subiendo..." : "Cambiar Foto"}
+            </button>
+          </div>
+        </div>
+
+        <input
+          type="file"
+          accept="image/*"
+          ref={imageRef}
+          onChange={handleImageUpload}
+          style={{ display: "none" }}
+          disabled={uploading}
+        />
+        <hr />
+        <dir className="Cambio_datos">
+          <h2>Nombre: {datosUser.perfil.name}</h2>
+
+          <hr />
+          <h2>Usuario: @{datosUser.perfil.username}</h2>
+          <hr />
+          <h2>Correo electronico {datosUser.email}</h2>
+          <dir className="formulario-entrada">
+            <form onSubmit={handleSubmit}>
+              <input
+                type="text"
+                value={userName}
+                placeholder={datosUser.perfil.username}
+                onChange={(e) => setUserName(e.target.value)}
+              />
+              <input
+                type="text"
+                value={name_n}
+                placeholder={datosUser.perfil.name}
+                onChange={(e) => setName(e.target.value)}
+              />
+              <button type="submit">Entrar</button>
+            </form>
+          </dir>
+        </dir>
+      </div>
+    </>
   );
 };
 

@@ -72,7 +72,7 @@ const Home = () => {
           <div className="datos-user">
             <h2>{datosUser.perfil.name}</h2>
             <h3>@{datosUser.perfil.username}</h3>
-            <h4>{datosUser.email}</h4>
+            <h5>{datosUser.email}</h5>
           </div>
         </>
       </div>
